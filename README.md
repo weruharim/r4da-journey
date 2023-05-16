@@ -1,5 +1,5 @@
 # r4da-journey
-My journey of learning R For Data Analysis
+My journey of learning R For Data Analysis using R for Data Science book by Hadley Wickham and Garrett Grolemund (2017). The book is freely accessible from https://r4ds.had.co.nz/
 
 ## Data Visualisation Using R
 
@@ -12,6 +12,9 @@ Before running the code, I made sure I have the `tidyverse` package installed. I
 ```R
 install.packages("tidyverse")
 ```
+
+I will use the mpg data frame that comes with ggplot2 to demonstrate what I have learned from the book.
+
 ### Code Examples
 ### Scatter Plot
 
