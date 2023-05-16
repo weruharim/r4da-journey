@@ -41,11 +41,42 @@ ggplot(data = mpg) +
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy, shape = class))
 ```
+#### Manually Setting Aesthetic Properties
+I also learned that the aes properties of the scatter plot can be set mannually. 
+
+##### Changing Point Colour
+To change the point colour manually, I used the colour parameter outside aes(). Here's an example:
+```R
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy), colour = "yellow")
+  ```
+
+To change the point size manually, I used the size parameter outside aes(). Here's an example:
+```R
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy), size = 3)
+ ```
+
+To change the point shape manually, I used the shape parameter outside aes(). Here's an example:
+ ```R
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy), shape = 24)
+  ```
+  #### Combining Aesthetic Properties
+  ```R
+##For shape 0-14, there is no fill. The colour is for the border.
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy), colour = "green", shape = 2, size = 3)
+##For shape 15-20, set the colour is for both the border and fill
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy), colour = "green", shape = 17, size = 3)
+##For shape 21-24, set both the colour for the border and the fill
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy), colour = "green", shape = 24, size = 3, fill = "yellow")
+```
 
 ## Faceting
-
 Faceting allows an analyst to create subplots for categorical data. I used facet_wrap() and facet_grid() functions to achieve this.
-
 ```R
 # Faceting with facet_wrap() for a single variable (class)
 ggplot(data = mpg) +
@@ -66,6 +97,9 @@ ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy)) +
   facet_grid(. ~ cyl)
 ```
+
+## Other Plot Types
+Here are a few examples of other plot types that I created using R:
 
 
 
