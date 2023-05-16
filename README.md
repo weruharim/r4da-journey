@@ -104,7 +104,46 @@ ggplot(data = mpg) +
 ## Other Plot Types
 Here are a few examples of other plot types that I created using R:
 
+### Smooth Chart
 
+To create a smooth chart, use the geom_smooth() function. Here's an example:
+
+```R
+ggplot(data = mpg) +
+  geom_smooth(mapping = aes(x = displ, y = hwy))
+```
+### Boxplot
+
+To create a boxplot, use the geom_boxplot() function. Here's an example:
+
+```R
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
+  geom_boxplot()
+```
+
+### Line Chart
+To create a line chart, use the geom_line() function. Here's an example:
+```R
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
+  geom_line()
+```
+
+### Area Chart
+
+To create an area chart, use the geom_area() function. Here's an example:
+
+```R
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
+  geom_area()
+```
+### Histogram
+
+To create a histogram, use the geom_histogram() function. Here's an example:
+
+```R
+ggplot(data = mpg, mapping = aes(x = displ)) +
+  geom_histogram(binwidth = 1)
+```
 
 
 
