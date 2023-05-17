@@ -154,18 +154,78 @@ To begin, I loaded the necessary libraries, including the `tidyverse` and `nycfl
 To get a better understanding of the dataset, I used the `view()` function to see the entire flights data frame. Additionally, I explored the documentation for the `flights` dataset using the `?flights` command.
 
 To filter the data and extract specific flights, I utilized the `filter()` function. For example, I filtered the flights dataset to extract flights that occurred on January 1st by specifying the conditions `month == 1` and `day == 1`. I stored the filtered data in a new data frame called `jan1`.
+```R
+jan1 <- filter(flights, month == 1, day == 1)
+view(jan1)
+```
 
 To view the `jan1` data frame, I used the `view()` function again. Alternatively, I could print the new data frame by enclosing the assignment in parentheses, like this: `(jan1 <- filter(flights, month == 1, day == 1))`.
 
-Next, I experimented with filtering the flights dataset using comparison operators. I filtered flights with a departure delay of less than or equal to -20 minutes by applying the condition `dep_delay <= -20`. Similarly, I filtered flights with an air time of 60 minutes or more using the condition `air_time >= 60`.
+```R
+(jan1 <- filter(flights, month == 1, day == 1))
+```
+
+Next, I experimented with filtering the flights dataset using comparison operators. I filtered flights with a an early departure of more than or equal to 20 minutes by applying the condition `dep_delay <= -20`. Similarly, I filtered flights with an air time of 60 minutes or more using the condition `air_time >= 60`.
+
+```R
+depDelayed <- filter(flights, dep_delay <= -20)
+view(depDelayed)
+
+longFlights <- filter(flights, air_time >= 60)
+view(longFlights)
+```
 
 I also explored the use of Boolean operators to filter data based on multiple conditions. For instance, I filtered flights that occurred in October, November, or December and covered a distance of over 1000 miles. I achieved this by combining the conditions `(month %in% c(10, 11, 12))` and `distance > 1000`.
 
+```R
+peakLongFlights0 <- filter(flights, (month == 10 | month == 11 | month == 12) & distance >= 1000)
+view(peakLongFlights)
+#A simplified code
+peakLongFlights <- filter(flights, (month %in% c(10,11,12)) & distance > 1000) 
+```
+
 In addition to the examples above, I completed a series of exercises to further practice filtering data using the `filter()` function. These exercises involved filtering flights based on various criteria such as arrival delay, destination, operating airline, departure month, and more. For each exercise, I used the `filter()` function with the corresponding conditions and stored the filtered data in new data frames. To examine the results, I utilized the `view()` function to inspect each filtered data frame.
+
+```R
+#Exercises
+#Had an arrival delay of two or more hours
+longDelays <- filter(flights, arr_delay >= 120)
+view(longDelays)
+#Flew to Houston (IAH or HOU)
+flightsToHouston <- filter(flights, dest %in% c("IAH", "HOU"))
+view(flightsToHouston)
+#Were operated by United, American, or Delta
+flightsOperated <- filter(flights, carrier %in% c("AA", "DL", "UA"))
+view(flightsOperated)
+#Departed in summer (July, August, and September)
+summerFlights <- filter(flights, month %in% c(7, 8, 9))
+view(summerFlights)  
+#Arrived more than two hours late, but didn’t leave late
+arrLateDepEarly <- filter(flights, arr_delay > 120 & dep_delay == 0)
+view(arrLateDepEarly)
+#Were delayed by at least an hour, but made up over 30 minutes in flight
+longDelayed <- filter(flights, dep_delay > 60 & air_time > 30)
+view(longDelayed)
+#Departed between midnight and 6am (inclusive)
+lateDep <- filter(flights, dep_time >= 2400 | dep_time <=6)
+view(lateDep)
+```
 
 Throughout my learning process, I also discovered the usefulness of the `between()` function. I utilized this function to filter flights that occurred in the summer months (July, August, and September) and flights that departed between midnight and 6 am.
 
+```R
+#using between()
+summerFlights1 <- filter(flights,  between(month, 7, 9))
+lateDep1 <- filter(flights,  between(dep_time, 0, 6))
+```
+
 Lastly, I explored the concept of missing values and filtered flights that had a missing departure time using the `is.na()` function.
+
+```R
+#How many flights have a missing depature time?
+missingDepTime <- filter(flights, is.na(dep_time))
+view(missingDepTime)
+```
 
 By applying the `filter()` function and exploring various conditions and operators, I gained a better understanding of how to extract specific subsets of data from a larger dataset.
 
