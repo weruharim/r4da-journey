@@ -247,7 +247,7 @@ To arrange the flights from the least delayed in arrival to the most delayed, I 
 arrangedByArrDel <- arrange(flights, arr_delay)
 ```
 
-To sort the flights from the most delayed in arrival to the least delayed, I used the `arrange()` function with the `desc()` function applied to the `arr_delay` column.
+To sort the flights from the most delayed in arrival to the least delayed, I used the `arrange()` function with the `desc()` helper function applied to the `arr_delay` column.
 
 ```R
 delayedFlights <- arrange(flights, desc(arr_delay))
@@ -255,7 +255,7 @@ view(delayedFlights)
 ```
 I completed a series of exercises to further practice arranging data using the `arrange()` function. For the exercises, I explored different sorting scenarios using `arrange()`:
 
-I sorted the flights to bring all missing values to the start by applying the `desc()` function to the `is.na(dep_time)` expression.
+I sorted the flights to bring all missing values to the start by applying the `desc()` helper function to the `is.na(dep_time)` expression.
 
 ```R
 missingDepTime <- arrange(flights, desc(is.na(dep_time)))
