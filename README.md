@@ -78,7 +78,7 @@ ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy), colour = "green", shape = 24, size = 3, fill = "yellow")
 ```
 
-## Faceting
+### Faceting
 Faceting allows an analyst to create subplots for categorical data. I used facet_wrap() and facet_grid() functions to achieve this.
 ```R
 # Faceting with facet_wrap() for a single variable (class)
@@ -101,10 +101,10 @@ ggplot(data = mpg) +
   facet_grid(. ~ cyl)
 ```
 
-## Other Plot Types
+### Other Plot Types
 Here are a few examples of other plot types that I created using R:
 
-### Smooth Chart
+#### Smooth Chart
 
 To create a smooth chart, use the geom_smooth() function. Here's an example:
 
@@ -112,7 +112,7 @@ To create a smooth chart, use the geom_smooth() function. Here's an example:
 ggplot(data = mpg) +
   geom_smooth(mapping = aes(x = displ, y = hwy))
 ```
-### Boxplot
+#### Boxplot
 
 To create a boxplot, use the geom_boxplot() function. Here's an example:
 
@@ -121,14 +121,14 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
   geom_boxplot()
 ```
 
-### Line Chart
+#### Line Chart
 To create a line chart, use the geom_line() function. Here's an example:
 ```R
 ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
   geom_line()
 ```
 
-### Area Chart
+#### Area Chart
 
 To create an area chart, use the geom_area() function. Here's an example:
 
@@ -136,7 +136,7 @@ To create an area chart, use the geom_area() function. Here's an example:
 ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
   geom_area()
 ```
-### Histogram
+#### Histogram
 
 To create a histogram, use the geom_histogram() function. Here's an example:
 
