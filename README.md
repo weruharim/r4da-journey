@@ -217,7 +217,7 @@ lateDep <- filter(flights, dep_time >= 2400 | dep_time <=6)
 view(lateDep)
 ```
 
-Throughout my learning process, I also discovered the usefulness of the `between()` function. I utilized this function to filter flights that occurred in the summer months (July, August, and September) and flights that departed between midnight and 6 am.
+Throughout my learning process, I also discovered the usefulness of the `between()` helper function. I utilized this function to filter flights that occurred in the summer months (July, August, and September) and flights that departed between midnight and 6 am.
 
 ```R
 #using between()
