@@ -159,7 +159,7 @@ jan1 <- filter(flights, month == 1, day == 1)
 view(jan1)
 ```
 
-To view the `jan1` data frame, I used the `view()` function again. Alternatively, I could print the new data frame by enclosing the assignment in parentheses, like this: `(jan1 <- filter(flights, month == 1, day == 1))`.
+To view the `jan1` data frame, I used the `view()` function again. Alternatively, I could print the new data frame by enclosing the assignment in parentheses, like this:
 
 ```R
 (jan1 <- filter(flights, month == 1, day == 1))
@@ -180,6 +180,7 @@ I also explored the use of Boolean operators to filter data based on multiple co
 ```R
 peakLongFlights0 <- filter(flights, (month == 10 | month == 11 | month == 12) & distance >= 1000)
 view(peakLongFlights)
+
 #A simplified code
 peakLongFlights <- filter(flights, (month %in% c(10,11,12)) & distance > 1000) 
 ```
@@ -191,21 +192,27 @@ In addition to the examples above, I completed a series of exercises to further 
 #Had an arrival delay of two or more hours
 longDelays <- filter(flights, arr_delay >= 120)
 view(longDelays)
+
 #Flew to Houston (IAH or HOU)
 flightsToHouston <- filter(flights, dest %in% c("IAH", "HOU"))
 view(flightsToHouston)
+
 #Were operated by United, American, or Delta
 flightsOperated <- filter(flights, carrier %in% c("AA", "DL", "UA"))
 view(flightsOperated)
+
 #Departed in summer (July, August, and September)
 summerFlights <- filter(flights, month %in% c(7, 8, 9))
 view(summerFlights)  
+
 #Arrived more than two hours late, but didn’t leave late
 arrLateDepEarly <- filter(flights, arr_delay > 120 & dep_delay == 0)
 view(arrLateDepEarly)
+
 #Were delayed by at least an hour, but made up over 30 minutes in flight
 longDelayed <- filter(flights, dep_delay > 60 & air_time > 30)
 view(longDelayed)
+
 #Departed between midnight and 6am (inclusive)
 lateDep <- filter(flights, dep_time >= 2400 | dep_time <=6)
 view(lateDep)
@@ -216,6 +223,7 @@ Throughout my learning process, I also discovered the usefulness of the `between
 ```R
 #using between()
 summerFlights1 <- filter(flights,  between(month, 7, 9))
+
 lateDep1 <- filter(flights,  between(dep_time, 0, 6))
 ```
 
