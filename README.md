@@ -15,8 +15,7 @@ install.packages("tidyverse")
 
 I will use the mpg data frame that comes with ggplot2 to demonstrate what I have learned from the book.
 
-### Code Examples
-### Scatter Plot
+### Examples of visualisation with Scatter Plot
 
 To create a scatter plot, I used the geom_point() function from the ggplot2 package. The example below plots the displ (displacement) on the x-axis and hwy (highway miles per gallon) on the y-axis.
 ```R
@@ -146,7 +145,7 @@ ggplot(data = mpg, mapping = aes(x = displ)) +
 ```
 
 ## Data Transformation
-### Filtering data using `filter()` in R
+### Filtering data using `filter()` function in R
 In my data analysis journey with R, I have learned how to use the `filter()` function to extract specific rows from a dataset based on certain conditions.
 
 To begin, I loaded the necessary libraries, including the `tidyverse` and `nycflights13` packages. I also loaded the flights dataset from the `nycflights13` package to work with. This dataset contains information about flights that department New York in 2013.
@@ -238,27 +237,61 @@ view(missingDepTime)
 By applying the `filter()` function and exploring various conditions and operators, I gained a better understanding of how to extract specific subsets of data from a larger dataset.
 
 
-### Arranging data using `arrange()` in R
+### Arranging data using `arrange()` function in R
 
 When working with the `arrange()` function, I learned how to sort the flights based on different criteria:
 
 To arrange the flights from the least delayed in arrival to the most delayed, I used the `arrange()` function with the `arr_delay` column.
 
+```R
+arrangedByArrDel <- arrange(flights, arr_delay)
+```
+
 To sort the flights from the most delayed in arrival to the least delayed, I used the `arrange()` function with the `desc()` function applied to the `arr_delay` column.
 
+```R
+delayedFlights <- arrange(flights, desc(arr_delay))
+view(delayedFlights)
+```
 I completed a series of exercises to further practice arranging data using the `arrange()` function. For the exercises, I explored different sorting scenarios using `arrange()`:
 
 I sorted the flights to bring all missing values to the start by applying the `desc()` function to the `is.na(dep_time)` expression.
 
+```R
+missingDepTime <- arrange(flights, desc(is.na(dep_time)))
+```
+
 To find the most delayed flights, I sorted the flights in descending order based on the departure delay (`dep_delay`) and arrival delay (`arr_delay`) columns.
+
+```R
+delayedDepFlight <- arrange(flights, desc(dep_delay))
+
+delayedArrFlights <- arrange(flights, desc(arr_delay))
+```
 
 I identified the flights that left earliest by arranging the flights based on the departure delay (`dep_delay`) column.
 
+```R
+earlyDepFlights <- arrange(flights, dep_delay)
+```
+
 For finding the fastest flights, I used the `arrange()` function with the `air_time` column.
+
+```R
+fastFlights <- arrange(flights, air_time)
+```
 
 To determine which flights traveled the longest and shortest distances, I sorted the flights in descending order based on the distance column for the longest flights, and in ascending order for the shortest flights.
 
-### Selecting data with the `select()` function
+```R
+#Which flights traveled the longest?
+longFlights <- arrange(flights, desc(distance))
+
+#Which traveled the shortest?
+shortFlights <- arrange(flights, distance)
+```
+
+### Selecting data with the `select()` function in R
 
 While working with the select() function, I learned how to choose specific variables from the flights data frame:
 
