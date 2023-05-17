@@ -293,9 +293,9 @@ shortFlights <- arrange(flights, distance)
 
 ### Selecting data with the `select()` function in R
 
-While working with the select() function, I learned how to choose specific variables from the flights data frame:
+While working with the `select()` function, I learned how to choose specific variables from the flights data frame:
 
-I selected only the destination column by using the `select()` function with the dest variable.
+I selected only the destination column by using the `select()` function with the `dest` variable.
 
 To extract a range of variables, I utilized the `select()` function with the range specified using the : operator.
 
