@@ -297,9 +297,9 @@ While working with the `select()` function, I learned how to choose specific var
 
 I selected only the destination column by using the `select()` function with the `dest` variable.
 
-To extract a range of variables, I utilized the `select()` function with the range specified using the : operator.
+To extract a range of variables, I utilized the `select()` function with the range specified using the `: operator`.
 
-Excluding specific variables from the selection was achieved by using the -(variable_name) notation within the `select()` function.
+Excluding specific variables from the selection was achieved by using the `-(variable_name)` notation within the `select()` function.
 
 By employing helper functions like `contains()`, `starts_with()`, and `ends_with()`, I could select variables based on specific patterns in their names.
 
