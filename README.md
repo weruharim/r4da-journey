@@ -146,7 +146,7 @@ ggplot(data = mpg, mapping = aes(x = displ)) +
 ```
 
 ## Data Transformation
-###Filtering data using `filter()` in R
+### Filtering data using `filter()` in R
 In my data analysis journey with R, I have learned how to use the `filter()` function to extract specific rows from a dataset based on certain conditions.
 
 To begin, I loaded the necessary libraries, including the `tidyverse` and `nycflights13` packages. I also loaded the flights dataset from the `nycflights13` package to work with. This dataset contains information about flights that department New York in 2013.
@@ -237,12 +237,50 @@ view(missingDepTime)
 
 By applying the `filter()` function and exploring various conditions and operators, I gained a better understanding of how to extract specific subsets of data from a larger dataset.
 
-Feel free to modify and experiment with the code to further enhance your data analysis skills using the `filter()` function.
 
+### Arranging data using `arrange()` in R
 
+When working with the `arrange()` function, I learned how to sort the flights based on different criteria:
 
+To arrange the flights from the least delayed in arrival to the most delayed, I used the `arrange()` function with the `arr_delay` column.
 
+To sort the flights from the most delayed in arrival to the least delayed, I used the `arrange()` function with the `desc()` function applied to the `arr_delay` column.
 
+I completed a series of exercises to further practice arranging data using the `arrange()` function. For the exercises, I explored different sorting scenarios using `arrange()`:
+
+I sorted the flights to bring all missing values to the start by applying the `desc()` function to the `is.na(dep_time)` expression.
+
+To find the most delayed flights, I sorted the flights in descending order based on the departure delay (`dep_delay`) and arrival delay (`arr_delay`) columns.
+
+I identified the flights that left earliest by arranging the flights based on the departure delay (`dep_delay`) column.
+
+For finding the fastest flights, I used the `arrange()` function with the `air_time` column.
+
+To determine which flights traveled the longest and shortest distances, I sorted the flights in descending order based on the distance column for the longest flights, and in ascending order for the shortest flights.
+
+### Selecting data with the `select()` function
+
+While working with the select() function, I learned how to choose specific variables from the flights data frame:
+
+I selected only the destination column by using the `select()` function with the dest variable.
+
+To extract a range of variables, I utilized the `select()` function with the range specified using the : operator.
+
+Excluding specific variables from the selection was achieved by using the -(variable_name) notation within the `select()` function.
+
+By employing helper functions like `contains()`, `starts_with()`, and `ends_with()`, I could select variables based on specific patterns in their names.
+
+I also discovered the `rename()` function (a variation of `select()`, which allowed me to rename variables within the flights data frame.
+
+I also conducted some exercises to practice different selection scenarios using `select()`:
+
+I brainstormed multiple ways to select the `dep_time`, `dep_delay`, `arr_time`, and `arr_delay` variables from the flights data frame.
+
+I explored the behavior of including the same variable multiple times in a `select()` call.
+
+I learned about the `all_of()` and `any_of()` functions, which proved helpful when combined with a vector of variable names for selection.
+
+I also experimented with the case sensitivity of select helpers and learned how to change the default behavior using the `ignore.case` argument within the helper functions.
 
 
 
