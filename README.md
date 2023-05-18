@@ -377,7 +377,7 @@ flights <- mutate(flights,
                   )
  ```
 
-Another exercise I did was to compare `air_time` with ``arr_time` - `dep_time``. I created a new variable `air_time_calc` to refer to ``arr_time` - `dep_time``.
+Another exercise I did was to compare `air_time` with `arr_time - dep_time`. I created a new variable `air_time_calc` to refer to ``arr_time` - `dep_time``.
 
 ```R
 flights <- mutate(flights,
@@ -446,4 +446,4 @@ merged_data <- left_join(merged_data, airports_selected_dest, by = c("dest" = "f
 view(merged_data)
 ````
 #### Conclusion
-I found that flights between airports that are in different timezones have `air_time_calc1` that is less than `air_time` (negative `air_time_diff`). So it is possible that the three reasons have something to do with `air_time` not being equal to ``arr_time` - `dep_time``
+I found that flights between airports that are in different timezones have `air_time_calc1` that is less than `air_time` (negative `air_time_diff`). So it is possible that the three reasons have something to do with `air_time` not being equal to `arr_time - dep_time`
