@@ -1,8 +1,8 @@
 # r4da-journey
 
 ##Table of Contents
-- [Introduction](## Introduction)
-- [Data Visualisatin Using R](## Data Visualisation Using R)
+- [Introduction](##introduction)
+- [Data Visualisatin Using R](##data-visualisation-using-r)
 - [Prerequisites](### Prerequisites)
 - [Examples of visualisation with Scatter Plot](### Examples of visualisation with Scatter Plot)
 - [Faceting](### Faceting)
