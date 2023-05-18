@@ -6,12 +6,12 @@
 - [Prerequisites](#prerequisites)
 - [Examples of visualisation with Scatter Plot](#examples-of-visualisation-with-scatter-plot)
 - [Faceting](#faceting)
-- [Other Plot Types](#other-plot-types)
+- [Other plot types](#other-plot-types)
 - [Data Transformation](#data-transformation)
 - [Filtering data using `filter()` function in R](#filtering-data-using-filter-function-in-r)
-- [Arranging data using `arrange()` function in R](### Arranging data using `arrange()` function in R)
-- [Selecting data with the `select()` function in R](### Selecting data with the `select()` function in R)
-- [Adding New Variables With `mutate()` in R](### Adding New Variables With `mutate()` in R)
+- [Arranging data using `arrange()` function in R](#arranging-data-using-arrange-function-in-r)
+- [Selecting data with the `select()` function in R](#selecting-data-with-the-select-function-in-R)
+- [Adding new variables with `mutate()` in R](#adding-new-variables-with-mutate-in-r)
 
 ## Introduction
 My journey of learning R For Data Analysis using R for Data Science book by Hadley Wickham and Garrett Grolemund (2017). The book is freely accessible from https://r4ds.had.co.nz/
