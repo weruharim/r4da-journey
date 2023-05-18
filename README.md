@@ -400,7 +400,7 @@ Looking at the first 10 rows, the two fields their values are still different. T
   2. The flights passed midnight 
   3. Airports in different timezones
 
-To check the first problem, I turned to the documentation and found out I did not miss anything. So I did a little research about the errors and found that it may be because of unaccounted time for taxiing, landing, and takeoff. This time which can vary significantly might explain why `air_time_calc1` is greater than `air_time` in most of the cases because the `arr_time` and `dep_time` include time for taxiing, landing, and takeoff. See here for more information: https://travel.stackexchange.com/questions/107373/is-departure-time-when-the-plane-leaves-the-gate-or-when-it-takes-off
+To check the first problem, I turned to the documentation and found out I did not miss anything. So I did a little research about the errors and found that it may be because of unaccounted time for taxiing, landing, and takeoff. This time which can vary significantly might explain why `air_time_calc1` is greater than `air_time` in most of the cases because the `arr_time` and `dep_time` include time for taxiing, landing, and takeoff. [Click here for more information](https://travel.stackexchange.com/questions/107373/is-departure-time-when-the-plane-leaves-the-gate-or-when-it-takes-off)
 
 On the second problem, if the flight passed midnight, there could be a 1,440 minutes difference (24 hours). I used `filter()` to check this and found 5 flights with with this problem. I used the following code:
 
