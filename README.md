@@ -1,17 +1,17 @@
 # r4da-journey
 
 ##Table of Contents
-[Introduction](## Introduction)
-[Data Visualisatin Using R](## Data Visualisation Using R)
-[Prerequisites](### Prerequisites)
-[Examples of visualisation with Scatter Plot](### Examples of visualisation with Scatter Plot)
-[Faceting](### Faceting)
-[Other Plot Types](### Other Plot Types)
-[Data Transformation](## Data Transformation)
-[Filtering data using `filter()` function in R](### Filtering data using `filter()` function in R)
-[Arranging data using `arrange()` function in R](### Arranging data using `arrange()` function in R)
-[Selecting data with the `select()` function in R](### Selecting data with the `select()` function in R)
-[Adding New Variables With `mutate()` in R](### Adding New Variables With `mutate()` in R)
+- [Introduction](## Introduction)
+- [Data Visualisatin Using R](## Data Visualisation Using R)
+- [Prerequisites](### Prerequisites)
+- [Examples of visualisation with Scatter Plot](### Examples of visualisation with Scatter Plot)
+- [Faceting](### Faceting)
+- [Other Plot Types](### Other Plot Types)
+- [Data Transformation](## Data Transformation)
+- [Filtering data using `filter()` function in R](### Filtering data using `filter()` function in R)
+- [Arranging data using `arrange()` function in R](### Arranging data using `arrange()` function in R)
+- [Selecting data with the `select()` function in R](### Selecting data with the `select()` function in R)
+- [Adding New Variables With `mutate()` in R](### Adding New Variables With `mutate()` in R)
 
 ## Introduction
 My journey of learning R For Data Analysis using R for Data Science book by Hadley Wickham and Garrett Grolemund (2017). The book is freely accessible from https://r4ds.had.co.nz/
