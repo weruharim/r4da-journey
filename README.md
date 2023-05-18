@@ -377,7 +377,7 @@ flights <- mutate(flights,
                   )
  ```
 
-Another exercise I did was to compare `air_time` with ``arr_time` - `dep_time``. 
+Another exercise I did was to compare `air_time` with ``arr_time` - `dep_time``. I created a new variable `air_time_calc` to refer to ``arr_time` - `dep_time``.
 
 ```R
 flights <- mutate(flights,
@@ -389,59 +389,61 @@ Looking at the first 10 rows, the two fields (`air_time_calc` and `air_time`) ha
 
 ```R
 flights <- mutate(flights,
-                  arr_time_min = arr_time %/% 100 * 60 + arr_time %% 100,
-                  dep_time_min = dep_time %/% 100 * 60 + dep_time %% 100,
-                  air_time_calc1 = arr_time_min - dep_time_min #creating ne air_time_calc1 field
+                  arr_time_min = arr_time %/% 100 * 60 + arr_time %% 100, #arrival time in minutes
+                  dep_time_min = dep_time %/% 100 * 60 + dep_time %% 100, #departure time in minutes
+                  air_time_calc1 = arr_time_min - dep_time_min #creating new air_time_calc field
                   )
 ```
-Looking at the first 10 rows, the two fields (`air_time_calc1` and `air_time`) have different values.
-#The problem might be due to 1. data errors 2. the flights passed midnight. 3. different timezones between airports
 
-#To check the first problem, I turned to the documentation and found out I did not missed anything.
-#So I did a little research about the errors and found that it may be because of unaccounted time for taxiing, landing, and takeoff.
-#The error might explain why `air_time_calc1` > `air_time` in some cases (the `arr_time` and `dep_time` include time for taxiing, landing, and takeoff).
-#See here for more information:https://travel.stackexchange.com/questions/107373/is-departure-time-when-the-plane-leaves-the-gate-or-when-it-takes-off
+Looking at the first 10 rows, the two fields their values are still different. The problem might be due to 
+  1. Data errors 
+  2. The flights passed midnight 
+  3. Airports in different timezones
 
-#On the second problem, if the flight passed midnight, there could be a 1,440 minutes difference (24 hours). 
-#I used `filter()` to check this and found 5 flights
+To check the first problem, I turned to the documentation and found out I did not miss anything. So I did a little research about the errors and found that it may be because of unaccounted time for taxiing, landing, and takeoff. This time which can vary significantly might explain why `air_time_calc1` is greater than `air_time` in most of the cases because the `arr_time` and `dep_time` include time for taxiing, landing, and takeoff. See here for more information: https://travel.stackexchange.com/questions/107373/is-departure-time-when-the-plane-leaves-the-gate-or-when-it-takes-off
+
+On the second problem, if the flight passed midnight, there could be a 1,440 minutes difference (24 hours). I used `filter()` to check this and found 5 flights with with this problem. I used the following code:
+
+```R
 flightsPassedMid <- flights %>% 
   filter(abs(air_time_calc1 - air_time) == 1440) #checking the absolute value of the difference
 head(flightsPassedMid)
+```
 
-#What about the other flights? The final reason can explain this. 
-#To get a clear picture of the problem, I printed a sample data of `air_time` and `air_time_calc1` fields
-#together with `origin` and `dest` fields.
+So what about the other flights? Can the final reason explain this? To get a clear picture of the problem, I printed a sample data of `air_time` and `air_time_calc1` fields together with `origin` and `dest` fields.
+
+```R
 sampleRows <- sample(nrow(flights), 20)  # Select 20 random rows
 selectedCols <- c("origin", "dest","air_time", "air_time_calc1")  # Columns of interest
 sampleData <- flights[sampleRows, selectedCols]
 print(sampleData)
-#Then, I used `mutate()` to add a field for the differences between `air_time_calc1` and `air_time`
+````
+
+Then, I used `mutate()` to add a field for the differences between `air_time_calc1` and `air_time`
+
+
+```R
 sampleData <- mutate(sampleData, 
                      air_time_diff = air_time_calc1 - air_time
                      )
-#I hypothesized that flights between airports that are in different timezones might have `air_time_calc1` < `air_time`
-#To prove my hypothesis, I used the `airports` data frame (part of `nycflights13` package).
+```
+I hypothesized that flights between airports that are in different timezones might have `air_time_calc1` less than `air_time`. To prove my hypothesis, I used the `airports` data frame (part of `nycflights13` package). In the `airports` data frame, I selected the FAA airport code (`faa`). timezone (`tz`) and Daylight savings time zone (`dst`) for `origin` column. (Refer to the documentation for more information about the variables.)
 
-#In the `airports` data frame, I selected the FAA airport code (`faa`). timezone (`tz`) and 
-#Daylight savings time zone (`dst`) for `origin` column. 
-#Refer to the documentation for more information about the variables.
+```R
 airports_selected_origin <- select(airports, faa, tz_origin = tz, dst_origin = dst)
-airports_selected_dest <- select(airports, faa, tz_dest = tz, dst_dest = dst)
 
-# Merge the selected columns based on a common key for origin
+airports_selected_dest <- select(airports, faa, tz_dest = tz, dst_dest = dst)
+````
+
+I then merged the selected columns based on a common key for origin and dest as shown below:
+
+```R
 merged_data <- left_join(sampleData, airports_selected_origin, by = c("origin" = "faa"))
 
-# Merge the selected columns based on a common key for dest
 merged_data <- left_join(merged_data, airports_selected_dest, by = c("dest" = "faa"))
 
 # View the merged data frame
 view(merged_data)
-
-
-
-
-
-
-
-
-
+````
+#### Conclusion
+I found that flights between airports that are in different timezones have `air_time_calc1` that is less than `air_time` (negative air_time_diff). So it is possible that the three reasons have something to do with `air_time` not being equal to arr_time - dep_time
