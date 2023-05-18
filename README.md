@@ -1,6 +1,6 @@
 # r4da-journey
 
-##Table of Contents
+## Table of Contents
 - [Introduction](#introduction)
 - [Data Visualisatin Using R](#data-visualisation-using-r)
 - [Prerequisites](#prerequisites)
