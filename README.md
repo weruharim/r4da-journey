@@ -1,11 +1,11 @@
 # r4da-journey
 
 ##Table of Contents
-- [Introduction](##introduction)
-- [Data Visualisatin Using R](##data-visualisation-using-r)
-- [Prerequisites](### Prerequisites)
-- [Examples of visualisation with Scatter Plot](### Examples of visualisation with Scatter Plot)
-- [Faceting](### Faceting)
+- [Introduction](#introduction)
+- [Data Visualisatin Using R](#data-visualisation-using-r)
+- [Prerequisites](#prerequisites)
+- [Examples of visualisation with Scatter Plot](#examples-of-visualisation-with-scatter-plot)
+- [Faceting](#faceting)
 - [Other Plot Types](### Other Plot Types)
 - [Data Transformation](## Data Transformation)
 - [Filtering data using `filter()` function in R](### Filtering data using `filter()` function in R)
