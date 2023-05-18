@@ -11,7 +11,7 @@
 - [Filtering data using `filter()` function in R](#filtering-data-using-filter-function-in-r)
 - [Arranging data using `arrange()` function in R](#arranging-data-using-arrange-function-in-r)
 - [Selecting data with the `select()` function in R](#selecting-data-with-the-select-function-in-R)
-- [Adding new variables with `mutate()` in R](#adding-new-variables-with-mutate-in-r)
+- [Adding calculated variables with `mutate()` in R](#adding-calculated-variables-with-mutate-in-r)
 
 ## Introduction
 My journey of learning R For Data Analysis using R for Data Science book by Hadley Wickham and Garrett Grolemund (2017). The book is freely accessible from https://r4ds.had.co.nz/
@@ -327,7 +327,7 @@ I learned about the `all_of()` and `any_of()` functions, which proved helpful wh
 
 I also experimented with the case sensitivity of select helpers and learned how to change the default behavior using the `ignore.case` argument within the helper functions.
 
-### Adding New Variables With `mutate()` in R
+### Adding calculated variables with `mutate()` in R
 
 ```R
 flightsSml <- select(
