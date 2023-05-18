@@ -315,7 +315,121 @@ I learned about the `all_of()` and `any_of()` functions, which proved helpful wh
 
 I also experimented with the case sensitivity of select helpers and learned how to change the default behavior using the `ignore.case` argument within the helper functions.
 
+### Adding New Variables With `mutate()` in R
 
+```R
+flightsSml <- select(
+  flights,
+  year:day,
+  ends_with("delay"),
+  distance,
+  air_time
+)
+```
+
+```R
+mutate(flightsSml,
+  gain = arr_delay - dep_delay,
+  speed = distance/ air_time * 60
+)
+````
+I also learned that I can  refer to a variable I have created
+
+```R
+calcFlightsSml <- mutate(flightsSml,
+       gain = arr_delay - dep_delay,
+       hours = air_time * 60,
+       gainPerHour = gain / hours
+       )
+```
+I discovered that variables created using `mutate()` are not kept. The `transmute()` function can be used to keep them instead of keeping all the variable.
+
+
+```R
+transmute(flightsSml,
+       gain = arr_delay - dep_delay,
+       speed = distance/ air_time * 60
+)
+```
+
+I used modular arithmetic to breakdown time in hours and minutes
+
+```R
+transmute(
+  flights,
+  dep_hr = dep_time %/% 100,#dividing departure time by 100
+  dep_min = dep_time %% 100 #storing the remainder of the above as minutes
+)
+```
+I also learned to use `min_rank()` to rank values in a vector.
+
+```R
+x <- c(3, 2, 1, 1, 2, 2, 1, 1, 1)
+min_rank(x)
+````
+
+I completed some exercises to test what I have learned. In the first exercise, I converted `dep_time` and `sched_dep_time` to a more convenient representation of number of minutes since midnight.
+
+```R
+flights <- mutate(flights,
+                  dep_time_min = dep_time %/% 100 * 60 + dep_time %% 100,
+                  sched_dep_time_min = sched_dep_time %/% 100 * 60 + sched_dep_time %% 100
+                  )
+ ```
+#Compare air_time with arr_time - dep_time. What do you expect to see? 
+#What do you see? What do you need to do to fix it?
+
+#comparing air_time with air_time_calc using a line chart
+flights <- mutate(flights,
+                  air_time_calc = arr_time - dep_time
+                  )
+flights <- mutate(flights,
+                  arr_time_min = arr_time %/% 100 * 60 + arr_time %% 100,
+                  dep_time_min = dep_time %/% 100 * 60 + dep_time %% 100,
+                  air_time_calc1 = arr_time_min - dep_time_min
+                  )
+#Looking at the first 10 rows, the two fields (`air_time_calc1` and `air_time`) have different values.
+#The problem might be due to 1. data errors 2. the flights passed midnight. 3. different timezones between airports
+
+#To check the first problem, I turned to the documentation and found out I did not missed anything.
+#So I did a little research about the errors and found that it may be because of unaccounted time for taxiing, landing, and takeoff.
+#The error might explain why `air_time_calc1` > `air_time` in some cases (the `arr_time` and `dep_time` include time for taxiing, landing, and takeoff).
+#See here for more information:https://travel.stackexchange.com/questions/107373/is-departure-time-when-the-plane-leaves-the-gate-or-when-it-takes-off
+
+#On the second problem, if the flight passed midnight, there could be a 1,440 minutes difference (24 hours). 
+#I used `filter()` to check this and found 5 flights
+flightsPassedMid <- flights %>% 
+  filter(abs(air_time_calc1 - air_time) == 1440) #checking the absolute value of the difference
+head(flightsPassedMid)
+
+#What about the other flights? The final reason can explain this. 
+#To get a clear picture of the problem, I printed a sample data of `air_time` and `air_time_calc1` fields
+#together with `origin` and `dest` fields.
+sampleRows <- sample(nrow(flights), 20)  # Select 20 random rows
+selectedCols <- c("origin", "dest","air_time", "air_time_calc1")  # Columns of interest
+sampleData <- flights[sampleRows, selectedCols]
+print(sampleData)
+#Then, I used `mutate()` to add a field for the differences between `air_time_calc1` and `air_time`
+sampleData <- mutate(sampleData, 
+                     air_time_diff = air_time_calc1 - air_time
+                     )
+#I hypothesized that flights between airports that are in different timezones might have `air_time_calc1` < `air_time`
+#To prove my hypothesis, I used the `airports` data frame (part of `nycflights13` package).
+
+#In the `airports` data frame, I selected the FAA airport code (`faa`). timezone (`tz`) and 
+#Daylight savings time zone (`dst`) for `origin` column. 
+#Refer to the documentation for more information about the variables.
+airports_selected_origin <- select(airports, faa, tz_origin = tz, dst_origin = dst)
+airports_selected_dest <- select(airports, faa, tz_dest = tz, dst_dest = dst)
+
+# Merge the selected columns based on a common key for origin
+merged_data <- left_join(sampleData, airports_selected_origin, by = c("origin" = "faa"))
+
+# Merge the selected columns based on a common key for dest
+merged_data <- left_join(merged_data, airports_selected_dest, by = c("dest" = "faa"))
+
+# View the merged data frame
+view(merged_data)
 
 
 
