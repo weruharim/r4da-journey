@@ -368,7 +368,7 @@ x <- c(3, 2, 1, 1, 2, 2, 1, 1, 1)
 min_rank(x)
 ````
 
-I completed some exercises to test what I have learned. In the first exercise, I converted `dep_time` and `sched_dep_time` to a more convenient representation of number of minutes since midnight.
+I completed some exercises to test what I have learned. In the first exercise, I converted `dep_time` and `sched_dep_time` to a more convenient representation of number of minutes since midnight:
 
 ```R
 flights <- mutate(flights,
@@ -376,19 +376,25 @@ flights <- mutate(flights,
                   sched_dep_time_min = sched_dep_time %/% 100 * 60 + sched_dep_time %% 100
                   )
  ```
-#Compare air_time with arr_time - dep_time. What do you expect to see? 
-#What do you see? What do you need to do to fix it?
 
-#comparing air_time with air_time_calc using a line chart
+Another exercise I did was to compare `air_time` with ``arr_time` - `dep_time``. 
+
+```R
 flights <- mutate(flights,
                   air_time_calc = arr_time - dep_time
                   )
+```
+
+Looking at the first 10 rows, the two fields (`air_time_calc` and `air_time`) have different values. I thought the difference was because `arr_time` and `dep_time` are in HHMM format while `air_time` was in minutes. So I used `mutate()` to transform `arr_time` and `dep_time` to minutes.
+
+```R
 flights <- mutate(flights,
                   arr_time_min = arr_time %/% 100 * 60 + arr_time %% 100,
                   dep_time_min = dep_time %/% 100 * 60 + dep_time %% 100,
-                  air_time_calc1 = arr_time_min - dep_time_min
+                  air_time_calc1 = arr_time_min - dep_time_min #creating ne air_time_calc1 field
                   )
-#Looking at the first 10 rows, the two fields (`air_time_calc1` and `air_time`) have different values.
+```
+Looking at the first 10 rows, the two fields (`air_time_calc1` and `air_time`) have different values.
 #The problem might be due to 1. data errors 2. the flights passed midnight. 3. different timezones between airports
 
 #To check the first problem, I turned to the documentation and found out I did not missed anything.
