@@ -1,12 +1,25 @@
 # r4da-journey
+
+##Table of Contents
+[Introduction](## Introduction)
+[Data Visualisatin Using R](## Data Visualisation Using R)
+[Prerequisites](### Prerequisites)
+[Examples of visualisation with Scatter Plot](### Examples of visualisation with Scatter Plot)
+[Faceting](### Faceting)
+[Other Plot Types](### Other Plot Types)
+[Data Transformation](## Data Transformation)
+[Filtering data using `filter()` function in R](### Filtering data using `filter()` function in R)
+[Arranging data using `arrange()` function in R](### Arranging data using `arrange()` function in R)
+[Selecting data with the `select()` function in R](### Selecting data with the `select()` function in R)
+[Adding New Variables With `mutate()` in R](### Adding New Variables With `mutate()` in R)
+
+## Introduction
 My journey of learning R For Data Analysis using R for Data Science book by Hadley Wickham and Garrett Grolemund (2017). The book is freely accessible from https://r4ds.had.co.nz/
 
 ## Data Visualisation Using R
-
 This documentation provides examples that I used to learn data visualization techniques in R. The code snippets and explanations below demonstrate how I created various plot types and customization options.
 
 ### Prerequisites
-
 Before running the code, I made sure I have the `tidyverse` package installed. I installed it using the following command in R:
 
 ```R
@@ -16,7 +29,6 @@ install.packages("tidyverse")
 I will use the mpg data frame that comes with ggplot2 to demonstrate what I have learned from the book.
 
 ### Examples of visualisation with Scatter Plot
-
 To create a scatter plot, I used the geom_point() function from the ggplot2 package. The example below plots the displ (displacement) on the x-axis and hwy (highway miles per gallon) on the y-axis.
 ```R
 ggplot(data = mpg) +
