@@ -348,4 +348,15 @@ To visually represent the relationship between distance and delay, I created a s
 
 For code simplification, I implemented a concise version of the previous analysis using the `%>%` operator and the dplyr package's pipe syntax. The resulting data frame, `destSum2`, stored the summarized information about each destination's count, average delay, and average distance. I applied the same filtering criteria as before to ensure meaningful results.
 
+```R
+destSum2 <- flights %>%
+  group_by(dest) %>%
+  summarize(
+    count = n(),
+    delay = mean(arr_delay, na.rm = TRUE),
+    distance = mean(distance, na.rm = TRUE)
+  ) %>%
+  filter(count > 20, dest != "HNL")
+  ```
+
 By performing these analyses and exploring the relationships among departure time, scheduled departure time, and departure delay, I gained valuable insights into flight delays. These findings provide a foundation for further investigation and decision-making in the realm of flight data analysis.
