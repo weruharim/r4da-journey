@@ -318,7 +318,16 @@ Next, I tackled the task of finding the 10 most delayed flights using a ranking 
 
 I explored group summaries using the `summarize()` function by calculating the average departure delay across all flights using the `flights` dataset and stored it in a summary variable called `delay`.
 
+```R
+summarise(flights, delay = mean(dep_delay, na.rm = TRUE))
+```
+
 To further investigate the average delay per day, I used the `group_by()` function to group the flights by the `dest` variable. I then used the `summarize()` function to calculate the mean departure delay per destination and stored the results in a new data frame called `delPerDestSum`.
+
+```R
+delPerDest <- group_by(flights, dest)
+delPerDestSum <- summarise(delPerDest, delay = mean(dep_delay, na.rm = TRUE))
+```
 
 Additionally, I sought to examine the relationship between the distance of a flight and its delays. I grouped the flights by destination (`dest`) using the `group_by()` function. Then, I calculated the count, average arrival delay (`delay`), and average distance (`distance`) for each destination using the `summarize()` function. To ensure meaningful analysis, I filtered out destinations with a count less than or equal to 20 and excluded the destination "HNL".
 
