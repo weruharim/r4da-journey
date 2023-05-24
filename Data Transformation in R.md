@@ -91,7 +91,7 @@ view(missingDepTime)
 By applying the `filter()` function and exploring various conditions and operators, I gained a better understanding of how to extract specific subsets of data from a larger dataset.
 
 
-### Arranging data using `arrange()` function in R
+## Arranging data using `arrange()` function in R
 
 When working with the `arrange()` function, I learned how to sort the flights based on different criteria:
 
