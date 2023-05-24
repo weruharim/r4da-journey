@@ -346,6 +346,9 @@ destSum <- filter(destSum, count>20)
 
 To visually represent the relationship between distance and delay, I created a scatter plot using the `ggplot()` function. The plot depicted the average distance on the x-axis and the average delay on the y-axis. The size of the points was proportional to the distance, and the transparency was set to 0.2 to avoid overplotting. Additionally, I included a smoothed line (without standard error bars) to illustrate any potential trends.
 
+![image](https://github.com/weruharim/r4da-journey/assets/93051822/66737ed5-6ead-44bd-9697-a1a258f9a7ae)
+
+
 For code simplification, I implemented a concise version of the previous analysis using the `%>%` operator and the dplyr package's pipe syntax. The resulting data frame, `destSum2`, stored the summarized information about each destination's count, average delay, and average distance. I applied the same filtering criteria as before to ensure meaningful results.
 
 ```R
