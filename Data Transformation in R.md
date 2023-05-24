@@ -331,6 +331,19 @@ delPerDestSum <- summarise(delPerDest, delay = mean(dep_delay, na.rm = TRUE))
 
 Additionally, I sought to examine the relationship between the distance of a flight and its delays. I grouped the flights by destination (`dest`) using the `group_by()` function. Then, I calculated the count, average arrival delay (`delay`), and average distance (`distance`) for each destination using the `summarize()` function. To ensure meaningful analysis, I filtered out destinations with a count less than or equal to 20 and excluded the destination "HNL".
 
+```R
+dest <- group_by(flights, dest)
+destSum <- summarize(dest,
+                     count = n(),
+                     delay = mean(arr_delay, na.rm = TRUE),
+                     distance = mean(distance, na.rm = TRUE))
+destSum <- filter(destSum,  count>20, dest != "HNL")
+ggplot(data = destSum, mapping = aes(x = distance, y = delay)) +
+  geom_point(aes(size = distance), alpha = 0.2) + 
+  geom_smooth(se = FALSE)
+destSum <- filter(destSum, count>20)
+```
+
 To visually represent the relationship between distance and delay, I created a scatter plot using the `ggplot()` function. The plot depicted the average distance on the x-axis and the average delay on the y-axis. The size of the points was proportional to the distance, and the transparency was set to 0.2 to avoid overplotting. Additionally, I included a smoothed line (without standard error bars) to illustrate any potential trends.
 
 For code simplification, I implemented a concise version of the previous analysis using the `%>%` operator and the dplyr package's pipe syntax. The resulting data frame, `destSum2`, stored the summarized information about each destination's count, average delay, and average distance. I applied the same filtering criteria as before to ensure meaningful results.
