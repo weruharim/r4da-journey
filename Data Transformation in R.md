@@ -170,7 +170,9 @@ I learned about the `all_of()` and `any_of()` functions, which proved helpful wh
 I also experimented with the case sensitivity of select helpers and learned how to change the default behavior using the `ignore.case` argument within the helper functions.
 
 ## Adding calculated variables with `mutate()` in R
+In this code snippet, various manipulations and analyses were performed on the flights dataset using the `mutate()` function in R. Let's go through the code and understand the steps taken.
 
+First, a subset of the flights dataset called `flightsSml` was created by selecting specific columns, including year, month, day, variables ending with "delay", `distance`, and `air_time`.
 ```R
 flightsSml <- select(
   flights,
@@ -180,14 +182,14 @@ flightsSml <- select(
   air_time
 )
 ```
-
+Then, I used the `mutate()` function to add two new variables to the `flightsSml` dataset. The first variable, `gain`, was calculated by subtracting the departure delay (`dep_delay`) from the arrival delay (`arr_delay`). The second variable, `speed`, was computed by dividing the `distance` by the `air_time` and multiplying by 60 to convert to minutes.
 ```R
 mutate(flightsSml,
   gain = arr_delay - dep_delay,
   speed = distance/ air_time * 60
 )
 ````
-I also learned that I can  refer to a variable I have created
+I also learned that I can  refer to a variable I have created. I created a new dataset named calcFlightsSml using the `mutate()` function again. This time, additional variables were added, including `hours`, representing the `air_time` in minutes, and `gainPerHour`, representing the `gain` divided by the `air_time` in hours.
 
 ```R
 calcFlightsSml <- mutate(flightsSml,
@@ -206,7 +208,7 @@ transmute(flightsSml,
 )
 ```
 
-I used modular arithmetic to breakdown time in hours and minutes
+I used modular arithmetic to breakdown time in hours and minutes and used `transmute()` to keep the variables and drop the others.
 
 ```R
 transmute(
@@ -215,7 +217,7 @@ transmute(
   dep_min = dep_time %% 100 #storing the remainder of the above as minutes
 )
 ```
-I also learned to use `min_rank()` to rank values in a vector.
+I also learned to use `min_rank()` function to rank values in a vector. A vector x was created with numerical values, and min_rank() was used to rank the values in ascending order.
 
 ```R
 x <- c(3, 2, 1, 1, 2, 2, 1, 1, 1)
