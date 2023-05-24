@@ -302,3 +302,26 @@ view(merged_data)
 #### Conclusion
 I found that flights between airports that are in different timezones have `air_time_calc1` that is less than `air_time` (negative `air_time_diff`). So it is possible that the three reasons have something to do with `air_time` not being equal to `arr_time - dep_time`
 
+I went on with practicing using `mutate` in analysis by comparing `dep_time`, `sched_dep_time`, and `dep_delay` variables in the flights dataset. I wanted to understand how these three numbers were related and identify any discrepancies.
+
+To begin, I used the `mutate()` function to create a new variable named `dep_delay_calc` in the `flights` dataset. This variable represented the calculated departure delay by subtracting `sched_dep_time` from `dep_time`. I then used the `select()` function to extract the relevant variables, including `dep_time`, `sched_dep_time`, `dep_delay`, and `dep_delay_calc`, into a new data frame called `flightsDelay`.
+
+However, I discovered an issue with `dep_delay` when delays spilled over to the next hour. The error arose because `dep_time` and `sched_dep_time` were in HHMM format. To address this, I decided to transform `dep_time` and `sched_dep_time` into minutes from midnight. I accomplished this by creating two new variables, `dep_time_min` and `sched_dep_time_min`, using the `mutate()` function. These new variables converted the time values to minutes by dividing the hour part (`%/% 100`) by 60 and adding the minute part (`%% 100`).
+
+After these transformations, the difference between `dep_time` and `sched_dep_time` in minutes became equivalent to `dep_delay_calc`, rectifying the earlier discrepancy. In cases where the delay extended past midnight, the difference increased by 1440 minutes (equivalent to 24 hours or 1 day).
+
+Next, I tackled the task of finding the 10 most delayed flights using a ranking function. However, I needed to decide how to handle ties. For this analysis, I utilized the `min_rank()` function to rank the flights by their departure delay in descending order, assigning the same rank to tied values.
+
+## Grouping summaries using the `summarize()` function.
+
+I explored group summaries using the `summarize()` function by calculating the average departure delay across all flights using the `flights` dataset and stored it in a summary variable called `delay`.
+
+To further investigate the average delay per day, I used the `group_by()` function to group the flights by the `dest` variable. I then used the `summarize()` function to calculate the mean departure delay per destination and stored the results in a new data frame called `delPerDestSum`.
+
+Additionally, I sought to examine the relationship between the distance of a flight and its delays. I grouped the flights by destination (`dest`) using the `group_by()` function. Then, I calculated the count, average arrival delay (`delay`), and average distance (`distance`) for each destination using the `summarize()` function. To ensure meaningful analysis, I filtered out destinations with a count less than or equal to 20 and excluded the destination "HNL".
+
+To visually represent the relationship between distance and delay, I created a scatter plot using the `ggplot()` function. The plot depicted the average distance on the x-axis and the average delay on the y-axis. The size of the points was proportional to the distance, and the transparency was set to 0.2 to avoid overplotting. Additionally, I included a smoothed line (without standard error bars) to illustrate any potential trends.
+
+For code simplification, I implemented a concise version of the previous analysis using the `%>%` operator and the dplyr package's pipe syntax. The resulting data frame, `destSum2`, stored the summarized information about each destination's count, average delay, and average distance. I applied the same filtering criteria as before to ensure meaningful results.
+
+By performing these analyses and exploring the relationships among departure time, scheduled departure time, and departure delay, I gained valuable insights into flight delays. These findings provide a foundation for further investigation and decision-making in the realm of flight data analysis.
