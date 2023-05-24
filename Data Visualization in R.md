@@ -71,6 +71,8 @@ ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy), colour = "green", shape = 24, size = 3, fill = "yellow")
 ```
 
+![image](https://github.com/weruharim/r4da-journey/assets/93051822/c41f17e2-1938-4093-b316-9726d5f000e0)
+
 ### Faceting
 Faceting allows an analyst to create subplots for categorical data. I used facet_wrap() and facet_grid() functions to achieve this.
 ```R
