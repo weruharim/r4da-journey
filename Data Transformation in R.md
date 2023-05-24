@@ -145,7 +145,7 @@ longFlights <- arrange(flights, desc(distance))
 shortFlights <- arrange(flights, distance)
 ```
 
-### Selecting data with the `select()` function in R
+## Selecting data with the `select()` function in R
 
 While working with the `select()` function, I learned how to choose specific variables from the flights data frame:
 
