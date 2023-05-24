@@ -169,7 +169,7 @@ I learned about the `all_of()` and `any_of()` functions, which proved helpful wh
 
 I also experimented with the case sensitivity of select helpers and learned how to change the default behavior using the `ignore.case` argument within the helper functions.
 
-### Adding calculated variables with `mutate()` in R
+## Adding calculated variables with `mutate()` in R
 
 ```R
 flightsSml <- select(
