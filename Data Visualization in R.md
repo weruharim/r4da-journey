@@ -95,14 +95,14 @@ ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy)) +
   facet_grid(. ~ cyl)
 ```
-![image](https://github.com/weruharim/r4da-journey/assets/93051822/7baddc91-609b-49a2-9544-2db4bba44af4)
-Faceting with facet_wrap() for a single variable (class)
-![image](https://github.com/weruharim/r4da-journey/assets/93051822/b31da2ef-3c50-4c3d-b515-acb9cf4d02d8)
-Faceting with facet_grid() for two variables (drv and cyl)
-![image](https://github.com/weruharim/r4da-journey/assets/93051822/55b9417c-6afd-4f2d-a859-bffb586cfc16)
-Faceting without specifying columns
-![image](https://github.com/weruharim/r4da-journey/assets/93051822/3d6978db-7fc4-435a-932f-bdd2cd3c2190)
-Faceting without specifying rows
+![image](https://github.com/weruharim/r4da-journey/assets/93051822/7baddc91-609b-49a2-9544-2db4bba44af4)  
+Faceting with facet_wrap() for a single variable (class)  
+![image](https://github.com/weruharim/r4da-journey/assets/93051822/b31da2ef-3c50-4c3d-b515-acb9cf4d02d8)  
+Faceting with facet_grid() for two variables (drv and cyl)  
+![image](https://github.com/weruharim/r4da-journey/assets/93051822/55b9417c-6afd-4f2d-a859-bffb586cfc16)  
+Faceting without specifying columns  
+![image](https://github.com/weruharim/r4da-journey/assets/93051822/3d6978db-7fc4-435a-932f-bdd2cd3c2190)  
+Faceting without specifying rows  
 ### Other Plot Types
 Here are a few examples of other plot types that I created using R:
 
