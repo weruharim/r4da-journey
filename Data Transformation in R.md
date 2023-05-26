@@ -500,7 +500,7 @@ daily <- group_by(flights, year, month, day)
 (per_year <- summarize(per_month, flights = sum(flights)))
 ```
 
-I created a `daily` object by grouping the data by `year`, `month`, and `day`. Then, we summarize the grouped data to calculate the number of flights per day, per month, and per year.
+I created a `daily` object by grouping the data by `year`, `month`, and `day`. Then, I summarized the grouped data to calculate the number of flights per day, per month, and per year.
 
 ---
 
