@@ -362,4 +362,154 @@ destSum2 <- flights %>%
   filter(count > 20, dest != "HNL")
   ```
 
+Including `na.rm = TRUE` every time in the code is kind of tiring. So I looked for a way to avoid it. So, I started by removing the missing values in the data to avoid using `na.rm = TRUE` later on. The code snippet used is as follows:
+
+```R
+notCancelled <- flights %>%
+  filter(!is.na(dep_delay), !is.na(arr_delay))
+```
+
+Here, we create a new dataset `notCancelled` by filtering out rows where both `dep_delay` and `arr_delay` are not missing (`!is.na(dep_delay)` and `!is.na(arr_delay)`).
+
+### Weighting Counts
+
+Next, we learn about weighting counts by assigning weights to observations based on a specific variable. The code example demonstrates this concept:
+
+```R
+notCancelled %>%
+  count(tailnum, wt = distance)
+```
+
+In the above code, we use the `count()` function to calculate the sum of the `distance` values for each unique `tailnum`. The `wt` parameter is used to assign weights to each observation, giving more weight to observations with larger distances.
+
+### Summarizing Observations with Logic
+
+We explore summarizing observations based on certain criteria using logical conditions. The code snippets provided demonstrate two approaches:
+
+1. Using `sum()` to count the number of early flights:
+
+```R
+notCancelled %>%
+  group_by(year, month, day) %>%
+  summarize(nEarlyFlights = sum(dep_time < 500))
+```
+
+Here, we group the data by `year`, `month`, and `day` and calculate the sum of observations where `dep_time` is less than 500, indicating early flights.
+
+2. Using `mean()` to calculate the percentage of early flights:
+
+```R
+notCancelled %>%
+  group_by(year, month, day) %>%
+  summarize(percEarlyFlights = mean(dep_time < 500))
+```
+
+Similarly, we group the data and calculate the mean of logical values where `dep_time` is less than 500, representing the percentage of early flights.
+
+### Summarizing Grouped Data with Descriptive Statistics
+
+We further explore summarization techniques using descriptive statistics. The code examples illustrate different approaches:
+
+1. Calculating the mean delay and count of flights for each destination:
+
+```R
+earlyflights <- notCancelled %>%
+  group_by(dest) %>%
+  summarize(
+    count = n(),
+    delay = mean(arr_delay[arr_delay < 0], na.rm = TRUE)
+  )
+```
+
+Here, we group the data by `dest` and calculate the count of flights and the mean delay for flights with negative arrival delays (`arr_delay < 0`).
+
+2. Counting the number of distinct carriers for each destination:
+
+```R
+notCancelled %>%
+  group_by(dest) %>%
+  summarize(
+    count = n(),
+    carriers = n_distinct(carrier)
+  )
+```
+
+We group the data by `dest` and calculate the count of flights and the number of distinct carriers using the `n_distinct()` function.
+
+3. Computing the standard deviation of distances for each destination:
+
+```R
+notCancelled %>%
+  group_by(dest) %>%
+  summarize(
+    distance_sd = sd(distance)
+  ) %>%
+  arrange(desc(distance_sd))
+```
+
+We group the data by `dest` and calculate the standard deviation of distances using the `sd()` function. The results are then arranged in descending order of the standard deviation.
+
+### Summarizing Time-related Information
+
+Next, we focus on summarizing time-related information using different techniques.
+
+
+
+1. Finding the departure time of the first flight and last flight each day using `min()` and `max()`:
+
+```R
+notCancelled %>%
+  group_by(year, month, day) %>%
+  summarize(
+    firstFlight = min(dep_time),
+    lastFlight = max(dep_time)
+  )
+```
+
+We group the data by `year`, `month`, and `day` and calculate the minimum and maximum departure time to determine the first and last flights each day.
+
+2. Alternatively, using `first()` and `last()` functions to find the departure time:
+
+```R
+notCancelled %>%
+  group_by(year, month, day) %>%
+  summarize(
+    firstFlight1 = first(dep_time),
+    lastFlight1 = last(dep_time)
+  )
+```
+
+In this approach, we utilize the `first()` and `last()` functions to directly obtain the departure time of the first and last flights each day.
+
+3. Utilizing `nth()` function to find the departure time of the nth flight:
+
+```R
+notCancelled %>%
+  group_by(year, month, day) %>%
+  summarize(
+    fifthFlight = nth(dep_time, 5),
+    tenthFlight = nth(dep_time, 10),
+    fifthLastFlight = nth(dep_time, -5)
+  )
+```
+
+Here, we group the data by `year`, `month`, and `day` and use the `nth()` function to extract the departure time of the fifth flight, tenth flight, and fifth-to-last flight.
+
+### Grouping Variables by Multiple Variables and Summarizing
+
+Lastly, we demonstrate grouping variables by multiple variables and summarizing them at different levels (day, month, and year).
+
+```R
+daily <- group_by(flights, year, month, day)
+(per_day <- summarize(daily, flights = n()))
+(per_month <- summarize(per_day, flights = sum(flights)))
+(per_year <- summarize(per_month, flights = sum(flights)))
+```
+
+We create a `daily` object by grouping the data by `year`, `month`, and `day`. Then, we summarize the grouped data to calculate the number of flights per day, per month, and per year.
+
+---
+
+This concludes the documentation for the R code, covering various data manipulation and summarization techniques. Feel free to reach out if you have any further questions or need additional assistance!
+
 By performing these analyses and exploring the relationships among departure time, scheduled departure time, and departure delay, I gained valuable insights into flight delays. These findings provide a foundation for further investigation and decision-making in the realm of flight data analysis.
