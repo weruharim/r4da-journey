@@ -373,20 +373,20 @@ Here, I created a new dataset `notCancelled` by filtering out rows where both `d
 
 ### Weighting Counts
 
-Next, we learn about weighting counts by assigning weights to observations based on a specific variable. The code example demonstrates this concept:
+Next, I learned about weighting counts by assigning weights to observations based on a specific variable. The code example demonstrates this concept:
 
 ```R
 notCancelled %>%
   count(tailnum, wt = distance)
 ```
 
-In the above code, we use the `count()` function to calculate the sum of the `distance` values for each unique `tailnum`. The `wt` parameter is used to assign weights to each observation, giving more weight to observations with larger distances.
+In the above code, I used the `count()` function to calculate the sum of the `distance` values for each unique `tailnum`. The `wt` parameter is used to assign weights to each observation, giving more weight to observations with larger distances.
 
 ### Summarizing Observations with Logic
 
-We explore summarizing observations based on certain criteria using logical conditions. The code snippets provided demonstrate two approaches:
+I explored summarizing observations based on certain criteria using logical conditions. The code snippets provided demonstrate two approaches:
 
-1. Using `sum()` to count the number of early flights:
+1. In the first instance, I grouped the flights based on year, month, and day and then used `sum()` to count the number of early flights i.e flights that departed before 5am:
 
 ```R
 notCancelled %>%
@@ -394,9 +394,7 @@ notCancelled %>%
   summarize(nEarlyFlights = sum(dep_time < 500))
 ```
 
-Here, we group the data by `year`, `month`, and `day` and calculate the sum of observations where `dep_time` is less than 500, indicating early flights.
-
-2. Using `mean()` to calculate the percentage of early flights:
+2. In the second instance, I used `mean()` to calculate the proportion of the early flights:
 
 ```R
 notCancelled %>%
@@ -404,7 +402,6 @@ notCancelled %>%
   summarize(percEarlyFlights = mean(dep_time < 500))
 ```
 
-Similarly, we group the data and calculate the mean of logical values where `dep_time` is less than 500, representing the percentage of early flights.
 
 ### Summarizing Grouped Data with Descriptive Statistics
 
