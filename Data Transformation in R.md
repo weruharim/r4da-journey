@@ -402,10 +402,9 @@ notCancelled %>%
   summarize(percEarlyFlights = mean(dep_time < 500))
 ```
 
-
 ### Summarizing Grouped Data with Descriptive Statistics
 
-We further explore summarization techniques using descriptive statistics. The code examples illustrate different approaches:
+I further explored summarization techniques using descriptive statistics. The code examples illustrate different approaches:
 
 1. Calculating the mean delay and count of flights for each destination:
 
@@ -418,7 +417,7 @@ earlyflights <- notCancelled %>%
   )
 ```
 
-Here, we group the data by `dest` and calculate the count of flights and the mean delay for flights with negative arrival delays (`arr_delay < 0`).
+Here, I grouped the data by `dest` and calculate the count of flights and the mean delay for flights with negative arrival delays (`arr_delay < 0`).
 
 2. Counting the number of distinct carriers for each destination:
 
@@ -431,7 +430,7 @@ notCancelled %>%
   )
 ```
 
-We group the data by `dest` and calculate the count of flights and the number of distinct carriers using the `n_distinct()` function.
+I grouped the data by `dest` and calculate the count of flights and the number of distinct carriers using the `n_distinct()` function.
 
 3. Computing the standard deviation of distances for each destination:
 
@@ -444,7 +443,7 @@ notCancelled %>%
   arrange(desc(distance_sd))
 ```
 
-We group the data by `dest` and calculate the standard deviation of distances using the `sd()` function. The results are then arranged in descending order of the standard deviation.
+In the third instance, I grouped the data by `dest` and calculate the standard deviation of distances using the `sd()` function. The results are then arranged in descending order of the standard deviation.
 
 ### Summarizing Time-related Information
 
