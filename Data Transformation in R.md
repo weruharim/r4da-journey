@@ -447,9 +447,7 @@ In the third instance, I grouped the data by `dest` and calculate the standard d
 
 ### Summarizing Time-related Information
 
-Next, we focus on summarizing time-related information using different techniques.
-
-
+Next, I focused on summarizing time-related information using different techniques.
 
 1. Finding the departure time of the first flight and last flight each day using `min()` and `max()`:
 
@@ -462,9 +460,9 @@ notCancelled %>%
   )
 ```
 
-We group the data by `year`, `month`, and `day` and calculate the minimum and maximum departure time to determine the first and last flights each day.
+I grouped the data by `year`, `month`, and `day` and calculated the minimum and maximum departure time to determine the first and last flights each day.
 
-2. Alternatively, using `first()` and `last()` functions to find the departure time:
+2. I also learned of an an alternatively way of finding the first and last departure time using `first()` and `last()` functions  respectively:
 
 ```R
 notCancelled %>%
@@ -475,9 +473,9 @@ notCancelled %>%
   )
 ```
 
-In this approach, we utilize the `first()` and `last()` functions to directly obtain the departure time of the first and last flights each day.
+In this approach, I utilized the `first()` and `last()` functions to directly obtain the departure time of the first and last flights each day.
 
-3. Utilizing `nth()` function to find the departure time of the nth flight:
+3. I learned the usefulness of using the `nth()` function to find the departure time of the nth flight, say the fifth flight, tenth flight, or the fifth flight from the last one:
 
 ```R
 notCancelled %>%
@@ -489,7 +487,7 @@ notCancelled %>%
   )
 ```
 
-Here, we group the data by `year`, `month`, and `day` and use the `nth()` function to extract the departure time of the fifth flight, tenth flight, and fifth-to-last flight.
+In the above example, I groupd the data by `year`, `month`, and `day` and use the `nth()` function to extract the departure time of the fifth flight, tenth flight, and fifth-to-last flight.
 
 ### Grouping Variables by Multiple Variables and Summarizing
 
