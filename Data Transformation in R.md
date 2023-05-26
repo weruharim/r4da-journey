@@ -491,7 +491,7 @@ In the above example, I groupd the data by `year`, `month`, and `day` and use th
 
 ### Grouping Variables by Multiple Variables and Summarizing
 
-Lastly, we demonstrate grouping variables by multiple variables and summarizing them at different levels (day, month, and year).
+Lastly, I learned how to group data by multiple variables and summarizing them at different levels (day, month, and year).
 
 ```R
 daily <- group_by(flights, year, month, day)
@@ -500,7 +500,7 @@ daily <- group_by(flights, year, month, day)
 (per_year <- summarize(per_month, flights = sum(flights)))
 ```
 
-We create a `daily` object by grouping the data by `year`, `month`, and `day`. Then, we summarize the grouped data to calculate the number of flights per day, per month, and per year.
+I created a `daily` object by grouping the data by `year`, `month`, and `day`. Then, we summarize the grouped data to calculate the number of flights per day, per month, and per year.
 
 ---
 
