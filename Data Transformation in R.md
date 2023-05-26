@@ -369,7 +369,7 @@ notCancelled <- flights %>%
   filter(!is.na(dep_delay), !is.na(arr_delay))
 ```
 
-Here, we create a new dataset `notCancelled` by filtering out rows where both `dep_delay` and `arr_delay` are not missing (`!is.na(dep_delay)` and `!is.na(arr_delay)`).
+Here, I created a new dataset `notCancelled` by filtering out rows where both `dep_delay` and `arr_delay` are not missing (`!is.na(dep_delay)` and `!is.na(arr_delay)`). So I don't have to use `na.rm = TRUE` ever time I want to exclude missing flights in the summary.
 
 ### Weighting Counts
 
